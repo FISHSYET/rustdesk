@@ -841,8 +841,7 @@ pub fn check_software_update() {
 
 #[tokio::main(flavor = "current_thread")]
 async fn check_software_update_() -> hbb_common::ResultType<()> {
-    let (request, url) =
-        hbb_common::version_check_request(hbb_common::VER_TYPE_RUSTDESK_CLIENT.to_string());
+    let url = "https://github.com/SHISHENR/rustdesk/releases/latest";
     let latest_release_response = create_http_client_async()
         .post(url)
         .json(&request)
@@ -944,7 +943,7 @@ fn get_api_server_(api: String, custom: String) -> String {
             return format!("http://{}", s);
         }
     }
-    "https://admin.rustdesk.com".to_owned()
+    "http://172.16.207.240:21114".to_owned()
 }
 
 pub fn get_audit_server(api: String, custom: String, typ: String) -> String {
